@@ -4,10 +4,17 @@ This repository is a fork of [`vortex-image-filtering`](https://github.com/vorte
 
 My contribution is the `RemoveGrid` filter, a computer-vision algorithm designed to remove a yellow grid that partially obscures an ArUco marker. The remaining filters, framework, and supporting code in this repository originate from the Vortex project unless otherwise stated.
 
+---
+<img width="608" height="214" alt="gridfilter" src="https://github.com/user-attachments/assets/50aaf27b-9d25-40ba-aaf1-6d5b71c55849" />
+
+
+
+---
 ## Problem
 
 When a yellow grid partially obscures an ArUco marker, the standard ArUco detector may no longer be able to identify the marker.
 
+---
 ## Approach
 
 The `RemoveGrid` filter processes the image in the following stages:
@@ -20,19 +27,19 @@ The `RemoveGrid` filter processes the image in the following stages:
 6. When required, the processed region is warped and rotated back to its original position and inserted into the full-sized image.
 
 The reconstructed marker can then be passed to an ArUco detector.
-
+---
 ## Code
 
 The filter is implemented in:
 
 [`include/image_filtering/lib/filters/remove_grid.hpp`](include/image_filtering/lib/filters/remove_grid.hpp)
 
+---
 ## Testing and Parameter Tuning
 
 The HSV threshold parameters were tuned using a random-search procedure. The filter can be tested in the Stonefish simulator by following the instructions provided in the [Vortex GitHub repository](https://github.com/vortexntnu/vortex-stonefish-sim).
 
 ---
-
 # Image Filtering Node
 [![Industrial CI](https://github.com/vortexntnu/vortex-image-filtering/actions/workflows/industrial-ci.yml/badge.svg)](https://github.com/vortexntnu/vortex-image-filtering/actions/workflows/industrial-ci.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/vortexntnu/vortex-image-filtering/main.svg)](https://results.pre-commit.ci/latest/github/vortexntnu/vortex-image-filtering/main)
@@ -40,12 +47,14 @@ The HSV threshold parameters were tuned using a random-search procedure. The fil
 
 The `image_filtering_node` is a ROS 2 node developed in the `vortex::image_filters` namespace. It is designed to subscribe to image topics, apply various image filters using OpenCV, and publish the filtered images back to ROS.
 
+---
 ## Features
 
 - **Multiple Filters**: Supports sharpening, unsharpening, eroding, dilating, white balancing, and a custom "ebus" filter.
 - **Dynamic Reconfiguration**: Allows for runtime changes to filter parameters and subscribed image topics via ROS 2 parameters.
 - **Parameter-Driven Configuration**: Configures filter types and specific attributes through ROS 2 parameters.
 
+---
 ## Configuration
 
 Configure the node using ROS 2 parameters:
